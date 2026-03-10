@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimizado: Reparaciones Eléctricas e Inselt -->
+    <title>Reparaciones Eléctricas Inselt | Electricista a domicilio SEC Clase A</title>
+    <meta name="description" content="Inselt: Expertos en reparaciones eléctricas y electricista a domicilio en San Bernardo y todo Chile. Certificación SEC Clase A, certificado TE1, instalaciones y mantenimiento para hogar e industria.">
+    <meta name="keywords" content="reparaciones eléctricas, electricista a domicilio, ingeniería eléctrica, instalador eléctrico sec, certificado te1, inselt, electricista san bernardo, mantenimiento eléctrico industrial">
+    <link rel="canonical" href="https://inselt.cl/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+    <!-- Open Graph / Social Media SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inselt.cl/">
+    <meta property="og:title" content="Reparaciones Eléctricas Inselt | Electricista SEC Clase A">
+    <meta property="og:description" content="Soluciones eléctricas certificadas para hogares e industrias. Expertos en TE1 y reparaciones de emergencia 24/7.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Datos Estructurados (JSON-LD) para Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Inselt Reparaciones Eléctricas",
+      "image": "https://plus.unsplash.com/premium_photo-1682928136660-8cbeaf4941b2?q=80&w=1470&auto=format&fit=crop",
+      "@id": "",
+      "url": "https://inselt.cl/",
+      "telephone": "+56920986662",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "San Bernardo",
+        "addressLocality": "Santiago",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.5925,
+        "longitude": -70.7056
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth;
+            background-color: #f8fafc;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-link {
+            font-weight: 700;
+            letter-spacing: 0.025em;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+        }
+        
+        .nav-link:hover { color: #fbbf24; }
+        .nav-link.active { color: #fbbf24; }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fbbf24;
+            border-radius: 2px;
+        }
+
+        .glass-header { 
+            background: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(12px); 
+        }
+
+        .hero-pattern {
+            background-color: #0f172a;
+            background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-container {
+            position: fixed;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 767px) {
+            .contact-container {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 12px;
+                width: 90%;
+                max-width: 400px;
+            }
+            .contact-btn {
+                flex: 1;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                border-radius: 16px;
+                font-weight: 800;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .contact-container {
+                right: 30px;
+                bottom: 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .contact-btn {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+                transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            .contact-btn span { display: none; }
+            .contact-btn:hover {
+                transform: scale(1.1) translateX(-5px);
+            }
+        }
+
+        .contact-btn:active { transform: scale(0.95); }
+    </style>
+</head>
+<body class="text-slate-900 overflow-x-hidden">
+
+    <!-- Navegación Principal -->
+    <header class="glass-header text-white fixed top-0 w-full z-[100] border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-amber-500 text-slate-900 px-2 h-9 flex items-center justify-center rounded-lg font-black text-xl tracking-tighter">IN</div>
+                <div class="flex flex-col">
+                    <span class="text-lg font-extrabold tracking-tighter uppercase">Inselt</span>
+                    <span class="text-[9px] text-amber-400 font-bold uppercase tracking-[0.2em]">Reparaciones Eléctricas</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-10">
+                <a href="javascript:void(0)" onclick="showTab('inicio')" class="nav-link text-sm py-2 active" id="link-inicio">INICIO</a>
+                <a href="javascript:void(0)" onclick="showTab('servicios')" class="nav-link text-sm py-2" id="link-servicios">SERVICIOS</a>
+                <a href="javascript:void(0)" onclick="showTab('nosotros')" class="nav-link text-sm py-2" id="link-nosotros">LA EMPRESA</a>
+                <a href="javascript:void(0)" onclick="showTab('contacto')" class="bg-amber-500 text-slate-950 px-6 py-2.5 rounded-full text-xs font-black hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20 uppercase tracking-wider">Presupuesto</a>
+            </nav>
+
+            <button onclick="toggleMobileMenu()" aria-label="Abrir Menú" class="md:hidden text-white p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800">
+            <div class="p-6 space-y-4">
+                <a href="javascript:void(0)" onclick="showTab('inicio'); toggleMobileMenu()" class="block text-lg font-bold">Inicio</a>
+                <a href="javascript:void(0)" onclick="showTab('servicios'); toggleMobileMenu()" class="block text-lg font-bold">Servicios</a>
+                <a href="javascript:void(0)" onclick="showTab('nosotros'); toggleMobileMenu()" class="block text-lg font-bold">La Empresa</a>
+                <a href="javascript:void(0)" onclick="showTab('contacto'); toggleMobileMenu()" class="block text-lg font-bold text-amber-500">Solicitar Presupuesto</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16 pb-32">
+        
+        <!-- SECCIÓN: INICIO -->
+        <section id="inicio" class="tab-content active">
+            <div class="hero-pattern text-white py-8 md:py-16 px-6">
+                <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 rounded-full">
+                            <span class="relative flex h-2.5 w-2.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+                            </span>
+                            <span class="text-amber-400 text-[10px] font-bold uppercase tracking-widest">Electricista a Domicilio • SEC Clase A</span>
+                        </div>
+                        <h1 class="text-4xl md:text-7xl font-black leading-[1.1] tracking-tight">
+                            Reparaciones <br><span class="text-amber-500 text-3xl md:text-6xl">Eléctricas Profesionales.</span>
+                        </h1>
+                        <p class="text-slate-400 text-base md:text-xl leading-relaxed max-w-xl">
+                            ¿Busca un <strong>electricista a domicilio</strong> confiable? En <strong>Inselt</strong> ofrecemos soluciones integrales para el hogar, comercio e industria con certificación SEC.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <a href="javascript:void(0)" onclick="showTab('servicios')" class="bg-amber-500 text-slate-950 px-7 py-3.5 rounded-2xl font-black text-base hover:bg-amber-400 transition-all">
+                                Ver Servicios
+                            </a>
+                            <a href="javascript:void(0)" onclick="showTab('contacto')" class="border border-slate-700 bg-slate-800/50 text-white px-7 py-3.5 rounded-2xl font-bold text-base hover:bg-slate-700 transition-all">
+                                Solicitar TE1
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block relative">
+                        <div class="absolute -inset-4 bg-amber-500/20 blur-3xl rounded-full"></div>
+                        <!-- Imagen actualizada: Solo equipo/tablero sin personas -->
+                        <img src="https://plus.unsplash.com/premium_photo-1682928136660-8cbeaf4941b2?q=80&w=1470&auto=format&fit=crop" class="relative rounded-3xl shadow-2xl border border-white/10 max-h-[500px] w-full object-cover" alt="Tablero eléctrico industrial de alta potencia - Instalación por Inselt">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white py-10 border-b border-slate-100">
+                <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center border-r md:border-r border-slate-100 last:border-0">
+                        <div class="text-2xl font-black text-slate-900">SEC A</div>
+                        <div class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Firma Autorizada</div>
+                    </div>
+                    <div class="text-center md:border-r border-slate-100 last:border-0">
+                        <div class="text-2xl font-black text-slate-900">TE1</div>
+                        <div class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Regularización</div>
+                    </div>
+                    <div class="text-center border-r md:border-r border-slate-100 last:border-0">
+                        <div class="text-2xl font-black text-slate-900">Express</div>
+                        <div class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Electricista a Domicilio</div>
+                    </div>
+                    <div class="text-center last:border-0">
+                        <div class="text-2xl font-black text-slate-900">100%</div>
+                        <div class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Seguro y Normativo</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-12 md:py-20 px-6 max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl font-black mb-6">Expertos en Reparaciones Eléctricas</h2>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            Ya sea que necesite un <strong>electricista a domicilio</strong> para una falla urgente en su casa o requiera normalizar su local comercial, en <strong>Inselt</strong> entregamos la seguridad de un trabajo ejecutado bajo normativa vigente.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="bg-amber-100 p-2 rounded-lg self-start"><svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+                                <div><h4 class="font-bold">Electricidad Habitacional</h4><p class="text-sm text-slate-500">Reparaciones de cortocircuitos, aumentos de capacidad y cableado nuevo.</p></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="bg-amber-100 p-2 rounded-lg self-start"><svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
+                                <div><h4 class="font-bold">Locales Comerciales</h4><p class="text-sm text-slate-500">Diseño eléctrico y certificación TE1 para tiendas y oficinas.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 p-8 rounded-[2.5rem] border border-slate-200">
+                        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Servicios Eléctricos 24/7
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-slate-700 font-medium text-sm">
+                                <div class="w-2 h-2 bg-amber-500 rounded-full shrink-0"></div> Electricista a domicilio para urgencias.
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium text-sm">
+                                <div class="w-2 h-2 bg-amber-500 rounded-full shrink-0"></div> Firma de planos y declaración TE1.
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 font-medium text-sm">
+                                <div class="w-2 h-2 bg-amber-500 rounded-full shrink-0"></div> Reparaciones eléctricas en toda la RM.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: SERVICIOS -->
+        <section id="servicios" class="tab-content py-12 md:py-20 px-6 bg-slate-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Nuestro Alcance</h2>
+                    <h3 class="text-4xl md:text-5xl font-black mb-6">Reparaciones y Montajes</h3>
+                    <p class="text-slate-500">Servicio técnico garantizado por electricistas calificados a domicilio.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-3xl p-10 border border-slate-200 card-hover flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-slate-900 text-amber-500 rounded-full flex items-center justify-center mb-8 shadow-xl">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        </div>
+                        <h4 class="text-2xl font-black mb-4">Electricista a Domicilio</h4>
+                        <p class="text-slate-500 text-sm mb-8 leading-relaxed max-w-xs">
+                            Reparaciones eléctricas rápidas, detección de fugas de energía y mantención preventiva en hogares.
+                        </p>
+                        <div class="w-full h-[1px] bg-slate-100 mb-8"></div>
+                        <ul class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] space-y-3 mb-10">
+                            <li>Tableros Automáticos</li>
+                            <li>Iluminación LED</li>
+                            <li>Normalización SEC</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-10 border border-slate-200 card-hover flex flex-col items-center text-center ring-4 ring-amber-500/10">
+                        <div class="w-20 h-20 bg-amber-500 text-slate-900 rounded-full flex items-center justify-center mb-8 shadow-xl shadow-amber-500/20">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <h4 class="text-2xl font-black mb-4">TE1 y Trámites</h4>
+                        <p class="text-slate-500 text-sm mb-8 leading-relaxed max-w-xs">
+                            Gestión completa de declaraciones SEC (TE1), firma de proyectos y normalizaciones ante CGE/Enel.
+                        </p>
+                        <div class="w-full h-[1px] bg-slate-100 mb-8"></div>
+                        <ul class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] space-y-3 mb-10">
+                            <li>Patentes Comerciales</li>
+                            <li>Aumento de Capacidad</li>
+                            <li>Firma Clase A</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-10 border border-slate-200 card-hover flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-slate-900 text-amber-500 rounded-full flex items-center justify-center mb-8 shadow-xl">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <h4 class="text-2xl font-black mb-4">Servicio Industrial</h4>
+                        <p class="text-slate-500 text-sm mb-8 leading-relaxed max-w-xs">
+                            Mantenimiento de salas eléctricas, mallas a tierra y automatización de procesos industriales.
+                        </p>
+                        <div class="w-full h-[1px] bg-slate-100 mb-8"></div>
+                        <ul class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] space-y-3 mb-10">
+                            <li>Bancos de Condensadores</li>
+                            <li>Tableros Fuerza</li>
+                            <li>Montaje Eléctrico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: LA EMPRESA -->
+        <section id="nosotros" class="tab-content py-12 md:py-20 px-6 bg-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Inselt: Reparaciones Eléctricas de Confianza</h2>
+                    <h3 class="text-4xl font-black mb-6">Ingeniería y Servicio a Domicilio</h3>
+                    <p class="text-slate-500">Combinamos el rigor técnico de un Ingeniero SEC Clase A con la disposición de un electricista a domicilio comprometido.</p>
+                </div>
+
+                <div class="space-y-12">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-900">
+                                <div class="w-2 h-6 bg-amber-500 rounded-full"></div> Electricista Certificado
+                            </h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Todas nuestras reparaciones eléctricas cumplen estrictamente con la normativa chilena para garantizar su seguridad.
+                            </p>
+                        </div>
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-900">
+                                <div class="w-2 h-6 bg-amber-500 rounded-full"></div> Respuesta Rápida
+                            </h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Servicio de electricista a domicilio con cobertura en San Bernardo y Santiago, ideal para fallas críticas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CONTACTO -->
+        <section id="contacto" class="tab-content py-12 md:py-20 px-6 bg-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Presupuesto Reparaciones Eléctricas</h2>
+                <h3 class="text-4xl font-black mb-12">Solicite su Electricista a Domicilio</h3>
+                
+                <div class="flex flex-col items-center gap-6">
+                    <div class="bg-amber-100 text-amber-800 px-6 py-4 rounded-2xl flex items-center gap-4 border border-amber-200">
+                        <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span class="font-bold">San Bernardo, Chile (Cobertura Nacional)</span>
+                    </div>
+                    <p class="text-slate-500 font-medium">Email: diazm.profesional@gmail.com</p>
+                    <p class="text-slate-400 text-sm mt-4 italic">Atención inmediata por WhatsApp para reparaciones y emergencias.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contenedor de Contacto -->
+    <div class="contact-container">
+        <a href="https://wa.me/56920986662" aria-label="WhatsApp" class="contact-btn bg-[#25D366] text-white hover:brightness-105">
+            <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>WhatsApp</span>
+        </a>
+        <a href="tel:+56920986662" aria-label="Llamar" class="contact-btn bg-amber-500 text-slate-950 hover:bg-amber-400">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span>Llamar</span>
+        </a>
+    </div>
+
+    <footer class="bg-slate-950 text-slate-500 py-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3 text-white">
+                <div class="bg-amber-500 text-slate-900 px-1 rounded font-bold">IN</div>
+                <span class="font-black tracking-widest text-sm">INSELT 2024</span>
+            </div>
+            <p class="text-[9px] uppercase tracking-[0.3em]">Reparaciones Eléctricas • SEC Clase A • Hogar • Comercio • Industria</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) activeTab.classList.add('active');
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+            
+            const activeLink = document.getElementById('link-' + tabId);
+            if(activeLink) activeLink.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        window.onload = () => {
+            const hash = window.location.hash.replace('#', '') || 'inicio';
+            showTab(hash);
+        };
+    </script>
+</body>
+</html>
