@@ -12,10 +12,10 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://reparacioneselectricas.cl/favicon.png" type="image/png"> 
-    <link rel="icon" type="image/png" sizes="32x32" href="https://reparacioneselectricas.cl/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://reparacioneselectricas.cl/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="https://reparacioneselectricas.cl/favicon-144x144.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://reparacioneselectricas.cl/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
     <!-- Open Graph / Social Media SEO (Atrae enlaces compartidos) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://reparacioneselectricas.cl/">
@@ -212,10 +212,10 @@
             </div>
 
             <nav class="hidden md:flex items-center space-x-10">
-                <a href="javascript:void(0)" onclick="showTab('inicio')" class="nav-link text-sm py-2 active" id="link-inicio">INICIO</a>
-                <a href="javascript:void(0)" onclick="showTab('servicios')" class="nav-link text-sm py-2" id="link-servicios">SERVICIOS</a>
-                <a href="javascript:void(0)" onclick="showTab('nosotros')" class="nav-link text-sm py-2" id="link-nosotros">LA EMPRESA</a>
-                <a href="javascript:void(0)" onclick="showTab('contacto')" class="bg-amber-500 text-slate-950 px-6 py-2.5 rounded-full text-xs font-black hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20 uppercase tracking-wider">Presupuesto</a>
+                <a  href="#inicio" id="link-inicio" class="nav-link text-sm py-2 active" id="link-inicio">INICIO</a>
+                <a  href="#servicios" id="link-servicios" class="nav-link text-sm py-2" id="link-servicios">SERVICIOS</a>
+                <a  href="#nosotros" id="link-nosotros" class="nav-link text-sm py-2" id="link-nosotros">LA EMPRESA</a>
+                <a  href="#contacto" id="link-contacto" class="bg-amber-500 text-slate-950 px-6 py-2.5 rounded-full text-xs font-black hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20 uppercase tracking-wider">Presupuesto</a>
             </nav>
 
             <button onclick="toggleMobileMenu()" aria-label="Abrir Menú" class="md:hidden text-white p-2">
@@ -225,10 +225,10 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800">
             <div class="p-6 space-y-4">
-                <a href="javascript:void(0)" onclick="showTab('inicio'); toggleMobileMenu()" class="block text-lg font-bold">Inicio</a>
-                <a href="javascript:void(0)" onclick="showTab('servicios'); toggleMobileMenu()" class="block text-lg font-bold">Servicios</a>
-                <a href="javascript:void(0)" onclick="showTab('nosotros'); toggleMobileMenu()" class="block text-lg font-bold">La Empresa</a>
-                <a href="javascript:void(0)" onclick="showTab('contacto'); toggleMobileMenu()" class="block text-lg font-bold text-amber-500">Solicitar Presupuesto</a>
+                <a  href="#inicio" onclick="toggleMobileMenu()" class="block text-lg font-bold">Inicio</a>
+                <a  href="#servicios" onclick="toggleMobileMenu()" class="block text-lg font-bold">Servicios</a>
+                <a  href="#nosotros" onclick="toggleMobileMenu()" class="block text-lg font-bold">La Empresa</a>
+                <a  href="#contacto" onclick="toggleMobileMenu()" class="block text-lg font-bold text-amber-500">Solicitar Presupuesto</a>
             </div>
         </div>
     </header>
@@ -254,10 +254,10 @@
                             ¿Busca un <strong>electricista a domicilio</strong> confiable? En <strong>Inselt</strong> ofrecemos soluciones integrales para el hogar, comercio e industria con certificación SEC.
                         </p>
                         <div class="flex flex-wrap gap-4 pt-4">
-                            <a href="javascript:void(0)" onclick="showTab('servicios')" class="bg-amber-500 text-slate-950 px-7 py-3.5 rounded-2xl font-black text-base hover:bg-amber-400 transition-all">
+                            <a  href="#servicios" id="link-servicios" class="bg-amber-500 text-slate-950 px-7 py-3.5 rounded-2xl font-black text-base hover:bg-amber-400 transition-all">
                                 Ver Servicios
                             </a>
-                            <a href="javascript:void(0)" onclick="showTab('contacto')" class="border border-slate-700 bg-slate-800/50 text-white px-7 py-3.5 rounded-2xl font-bold text-base hover:bg-slate-700 transition-all">
+                            <a  href="#contacto" id="link-contacto" class="border border-slate-700 bg-slate-800/50 text-white px-7 py-3.5 rounded-2xl font-bold text-base hover:bg-slate-700 transition-all">
                                 Solicitar TE1
                             </a>
                         </div>
@@ -488,31 +488,51 @@
     </footer>
 
     <script>
-        function showTab(tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-            
-            const activeTab = document.getElementById(tabId);
-            if (activeTab) activeTab.classList.add('active');
+  function showTab(tabId) {
+    // Si no hay tabId (ej: la URL es solo /), mostramos 'inicio' por defecto
+    const targetId = tabId || 'inicio';
 
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => link.classList.remove('active'));
-            
-            const activeLink = document.getElementById('link-' + tabId);
-            if(activeLink) activeLink.classList.add('active');
+    // 1. Ocultar todos los contenidos
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+    
+    // 2. Mostrar la sección que corresponde al ID
+    const activeTab = document.getElementById(targetId);
+    if (activeTab) {
+        activeTab.classList.add('active');
+    } else {
+        // Fallback: si el hash no existe, vuelve al inicio
+        document.getElementById('inicio').classList.add('active');
+    }
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    // 3. Actualizar los colores de los botones del menú (clase active)
+    const links = document.querySelectorAll('.nav-link');
+    links.forEach(link => link.classList.remove('active'));
+    
+    const activeLink = document.getElementById('link-' + targetId);
+    if(activeLink) activeLink.classList.add('active');
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+    // 4. Volver al inicio de la página suavemente
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-        window.onload = () => {
-            const hash = window.location.hash.replace('#', '') || 'inicio';
-            showTab(hash);
-        };
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+}
+
+// DETECTAR CAMBIOS EN EL # DE LA URL
+window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace('#', '');
+    showTab(hash);
+});
+
+// LÓGICA AL CARGAR LA PÁGINA (Por si entran directo a un #pestaña)
+window.onload = () => {
+    const hash = window.location.hash.replace('#', '');
+    showTab(hash);
+};
+
     </script>
 </body>
 </html>
