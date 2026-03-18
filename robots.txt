@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /admin/
+
+# Optimización para rastreo de imágenes
+User-agent: Googlebot-Image
+Allow: /
+
+# Ubicación del Mapa del Sitio
+Sitemap: https://reparacioneselectricas.cl/sitemap.xml
