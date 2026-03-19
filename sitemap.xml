@@ -1,33 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página de Inicio -->
   <url>
     <loc>https://reparacioneselectricas.cl/</loc>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2024-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- Sección: Inicio (Ancla) -->
   <url>
-    <loc>https://reparacioneselectricas.cl/#servicios</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://reparacioneselectricas.cl/#inicio</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Sección: Servicios (Ancla) -->
   <url>
-    <loc>https://reparacioneselectricas.cl/#nosotros</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://reparacioneselectricas.cl/#servicios</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
+  <!-- Sección: La Empresa (Ancla) -->
   <url>
-    <loc>https://reparacioneselectricas.cl/#contacto</loc>
-    <lastmod>2026-03-18</lastmod>
+    <loc>https://reparacioneselectricas.cl/#nosotros</loc>
+    <lastmod>2024-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Página Independiente: Presupuesto Online -->
+  <url>
+    <loc>https://reparacioneselectricas.cl/presupuesto.html</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>
