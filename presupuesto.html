@@ -1,599 +1,307 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Google Tag (gtag.js) - Mantenido de la versión original -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N114LPHVBS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N114LPHVBS');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- SEO Básico -->
-    <title>Presupuesto Eléctrico Online en Chile | Instalador Autorizado SEC</title>
-    <meta name="description" content="Calcula tu presupuesto eléctrico online con INSELT. Cotizador para instalaciones, tableros y reparaciones eléctricas certificadas SEC Clase A en Chile.">
-    <meta name="keywords" content="presupuesto electricista, cotizador electrico, instalador SEC, reparaciones electricas chile, planos electricos, tablero electrico precio, certificado TE1">
-    <meta name="author" content="INSELT Ingeniería Eléctrica">
-    <link rel="canonical" href="https://reparacioneselectricas.cl/presupuesto.html" />
-
+    <title>Cotizador de Servicios Eléctricos | INSELT Ingeniería</title>
+    <meta name="description" content="Solicita tu presupuesto para servicios eléctricos certificados. Expertos en instalaciones residenciales e industriales con respaldo SEC.">
     <link rel="icon" type="image/png" sizes="48x48" href="https://reparacioneselectricas.cl/favicon.png"> 
-    <link rel="icon" type="image/png" sizes="32x32" href="https://reparacioneselectricas.cl/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://reparacioneselectricas.cl/avicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="https://reparacioneselectricas.cl/favicon-144x144.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://reparacioneselectricas.cl/favicon-192x192.png">
-    <!-- SEO Local -->
-    <meta name="geo.region" content="CL" />
-    <meta name="geo.placename" content="Chile" />
-
-    <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://reparacioneselectricas.cl/presupuesto.html">
-    <meta property="og:title" content="Presupuesto Eléctrico Online en Chile | Instalador Autorizado SEC">
-    <meta property="og:description" content="Obtén un presupuesto estimado para tu proyecto eléctrico en segundos. Servicio por Instalador Autorizado SEC Clase A.">
-    <meta property="og:image" content="https://reparacioneselectricas.cl/favicon-144x144.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://reparacioneselectricas.cl/presupuesto.html">
-    <meta property="twitter:title" content="Presupuesto Eléctrico Online en Chile | Instalador Autorizado SEC">
-    <meta property="twitter:description" content="Calcula el costo de tu instalación eléctrica, tableros y más con nuestro cotizador en línea.">
-    <meta property="twitter:image" content="https://reparacioneselectricas.cl/favicon-144x144.png">
-
+    
+    <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        
         :root {
-            --inselt-orange: #f97316;
-            --inselt-dark: #0f172a;
+            --brand-gold: #fbbf24;
+            --brand-dark: #0f172a;
+            --brand-card: #1e293b;
         }
 
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            -webkit-tap-highlight-color: transparent;
-            background-color: #f8fafc;
-        }
-
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-
-        .active-tab {
-            background-color: var(--inselt-orange) !important;
-            color: white !important;
-            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
-            border-color: var(--inselt-orange) !important;
-        }
-
-        .step-locked {
-            filter: grayscale(1);
-            opacity: 0.5;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .pulse-input {
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border {
-            0% { border-color: #e2e8f0; }
-            50% { border-color: #f97316; }
-            100% { border-color: #e2e8f0; }
-        }
-
-        .item-appear {
-            animation: slideIn 0.3s ease-out forwards;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .work-type-btn.active {
-            background-color: var(--inselt-dark);
+            background-color: var(--brand-dark); 
             color: white;
-            border-color: var(--inselt-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .inselt-header { 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
         }
 
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .btn-home {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .modal-overlay {
-            background-color: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(8px);
+        .card-custom { 
+            background: var(--brand-card); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 1.25rem;
         }
+
+        .input-dark { 
+            background: rgba(15, 23, 42, 0.6); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            color: white; 
+            transition: all 0.3s ease; 
+        }
+
+        .input-dark:focus { 
+            border-color: var(--brand-gold); 
+            outline: none; 
+        }
+        
+        .item-card { 
+            background: rgba(15, 23, 42, 0.4); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 1.25rem; 
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .item-card.active {
+            border-color: var(--brand-gold);
+            background: rgba(251, 191, 36, 0.05);
+        }
+        
+        .gradient-text { 
+            background: linear-gradient(to right, #fbbf24, #f59e0b); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        .step-badge {
+            width: 24px;
+            height: 24px;
+            background: var(--brand-gold);
+            color: var(--brand-dark);
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        #success-message { display: none; }
+        
+        .loading-spinner {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid #fbbf24;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18011817971"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<body class="antialiased">
 
-  gtag('config', 'AW-18011817971');
-</script>
-<body class="text-slate-900 pb-20 lg:pb-10">
-
-    <!-- Modal de Instrucciones -->
-    <div id="instruction-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 modal-overlay">
-        <div class="bg-white rounded-[2rem] max-w-sm w-full p-8 shadow-2xl">
-            <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                <i data-lucide="help-circle" class="w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-extrabold text-center text-slate-900 mb-4">¿Cómo contactarnos?</h3>
-            <div class="space-y-4 text-sm text-slate-600 mb-8">
-                <div class="flex gap-3">
-                    <div class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-bold shrink-0">1</div>
-                    <p>Se abrirá tu aplicación de <b>WhatsApp</b>.</p>
+    <header class="inselt-header fixed top-0 left-0 w-full z-[9999] border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="https://reparacioneselectricas.cl/" class="flex items-center gap-3 no-underline">
+                <div class="bg-amber-500 text-slate-950 w-10 h-10 flex items-center justify-center rounded-xl font-black text-xl">IN</div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-white text-xl font-extrabold uppercase">Inselt</span>
+                    <span class="text-amber-400 text-[10px] font-bold uppercase tracking-[0.25em]">Ingeniería</span>
                 </div>
-                <div class="flex gap-3">
-                    <div class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-bold shrink-0">2</div>
-                    <p>El mensaje con tu <b>presupuesto detallado</b> se escribirá solo.</p>
-                </div>
-                <div class="flex gap-3">
-                    <div class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-bold shrink-0">3</div>
-                    <p>Dale a <b>"Enviar"</b> para que un técnico Clase A lo revise.</p>
-                </div>
-            </div>
-            <button onclick="closeInstructions()" class="w-full bg-slate-900 hover:bg-black text-white font-bold py-4 rounded-xl transition-all active:scale-95 uppercase text-xs tracking-widest">
-                Entendido, Enviar ahora
-            </button>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 h-16 md:h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3 md:gap-5">
-                <!-- BOTÓN VOLVER INICIO -->
-                <a href="/" class="group flex items-center gap-2 text-slate-400 hover:text-slate-900 transition-colors">
-                    <div class="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center group-hover:border-slate-900 transition-colors">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                    </div>
-                    <span class="hidden md:block text-[10px] font-black uppercase tracking-widest">Inicio</span>
-                </a>
-
-                <div class="flex items-center gap-3">
-                    <div class="bg-slate-900 p-2 rounded-xl">
-                        <img src="https://reparacioneselectricas.cl/favicon-144x144.png" alt="Inselt Logo" class="w-8 h-8 md:w-10 md:h-10 object-contain brightness-0 invert">
-                    </div>
-                    <div>
-                        <h1 class="text-lg md:text-xl font-black tracking-tighter text-slate-900 leading-none">INSELT</h1>
-                        <p class="text-[8px] md:text-[9px] text-orange-600 font-bold uppercase tracking-[0.2em] mt-1">Ingeniería Eléctrica</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col items-end text-right">
-                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Instalador SEC Clase A</span>
-                <a href="tel:+56920986662" class="text-[10px] font-bold text-orange-600 flex items-center justify-end gap-1.5 mt-0.5 hover:scale-105 transition-transform">
-                    <i data-lucide="phone" class="w-3 h-3 fill-orange-600"></i>
-                    Llamar +569 2098 6662
-                </a>
-                <span class="text-[8px] font-bold text-green-600 flex items-center justify-end gap-1 mt-0.5">
-                    <span class="relative flex h-1.5 w-1.5">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-                    </span>
-                    COTIZADOR EN LÍNEA
-                </span>
-            </div>
+            </a>
+            <a href="https://reparacioneselectricas.cl/" class="btn-home">Volver</a>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-6 md:py-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+    <main class="pt-32 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
             
-            <!-- SECCIÓN IZQUIERDA: CONFIGURACIÓN Y CATÁLOGO -->
-            <div class="lg:col-span-7 space-y-8">
-                
-                <!-- PASO 1 -->
-                <section>
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center text-xs font-black shadow-lg shadow-orange-200">01</span>
-                        <h2 class="text-xs md:text-sm font-black text-slate-800 uppercase tracking-widest">Datos del Proyecto</h2>
-                    </div>
-                    
-                    <div class="bg-white p-5 md:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-500 tracking-wider">
-                                    <i data-lucide="ruler" class="w-3.5 h-3.5 text-orange-500"></i>
-                                    Superficie total de la instalación: Casa, Local, Bodega o Galpón (m²)
-                                </label>
-                                <input type="number" id="house-size" placeholder="Ej: 80" oninput="validateAndRefresh()" 
-                                    class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-transparent text-xl font-extrabold outline-none transition-all focus:border-orange-500 focus:bg-white pulse-input">
-                            </div>
-
-                            <div class="space-y-2">
-                                <label class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-500 tracking-wider">
-                                    <i data-lucide="user" class="w-3.5 h-3.5 text-orange-500"></i>
-                                    Nombre completo del cliente o Razón Social (Empresa)
-                                </label>
-                                <input type="text" id="c-name" oninput="validateAndRefresh()" placeholder="Tu nombre" 
-                                    class="w-full p-4 bg-slate-50 rounded-2xl border-2 border-transparent text-base font-bold outline-none transition-all focus:border-orange-500 focus:bg-white border-slate-100">
-                            </div>
-                        </div>
-
-                        <div class="space-y-2 pt-2">
-                            <label class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Complejidad de la Instalación</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                <select id="diff-factor" onchange="updateTotals()" class="w-full col-span-3 px-5 py-4 bg-slate-50 rounded-2xl border border-slate-100 text-sm font-bold outline-none focus:ring-2 focus:ring-orange-100 appearance-none cursor-pointer">
-                                    <option value="1">Residencial (Tabiquería/Ladrillo)</option>
-                                    <option value="1.4">Construcción Pesada (Hormigón)</option>
-                                    <option value="0.8">Industrial (Instalación a la vista)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- PASO 2 -->
-                <section id="catalog-section" class="step-locked transition-all duration-500">
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="w-8 h-8 rounded-lg bg-slate-200 text-slate-500 flex items-center justify-center text-xs font-black" id="step-2-badge">02</span>
-                        <h2 class="text-xs md:text-sm font-black text-slate-800 uppercase tracking-widest">Selección de Servicios</h2>
-                    </div>
-                    
-                    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-4 -mx-1 px-1" id="tabs-container"></div>
-
-                    <div id="work-mode-container" class="bg-slate-200/50 p-1.5 rounded-2xl mb-6 flex gap-1">
-                        <button onclick="setWorkMode('new')" id="mode-new" class="work-type-btn active flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Obra Nueva
-                        </button>
-                        <button onclick="setWorkMode('fix')" id="mode-fix" class="work-type-btn flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2">
-                            <i data-lucide="wrench" class="w-3.5 h-3.5"></i> Mantención
-                        </button>
-                    </div>
-
-                    <div id="catalog-items" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-                </section>
+            <div id="form-header" class="mb-12">
+                <h1 class="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">
+                    Gestión de <br><span class="gradient-text">Proyectos Eléctricos</span>
+                </h1>
+                <p class="text-slate-400 font-medium max-w-xl">
+                    Solicita tu presupuesto técnico. Los datos se procesarán de forma segura a través de nuestra infraestructura en Cloudflare.
+                </p>
             </div>
 
-            <!-- RESUMEN DERECHA: CARRITO -->
-            <div class="lg:col-span-5">
-                <div class="lg:sticky lg:top-24 space-y-4">
-                    <div class="bg-white rounded-[2rem] border border-slate-200 shadow-xl overflow-hidden flex flex-col max-h-[calc(100vh-120px)]">
-                        
-                        <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
-                            <div>
-                                <h3 class="text-xs font-black uppercase tracking-widest text-slate-900">Mi Presupuesto</h3>
-                                <p class="text-[10px] text-slate-400 font-bold mt-0.5">Este valor es un presupuesto referencial. Para su validación definitiva, uno de nuestros técnicos debe realizar una inspección en terreno.</p>
-                            </div>
-                            <button onclick="clearCart()" class="p-2 text-slate-400 hover:text-red-500 transition-colors">
-                                <i data-lucide="trash-2" class="w-5 h-5"></i>
-                            </button>
-                        </div>
-
-                        <div id="cart-list" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scroll min-h-[150px]">
-                            <!-- Listado sin precios individuales -->
-                        </div>
-
-                        <div class="p-6 bg-white border-t border-slate-100 space-y-4">
-                            <div class="flex justify-between items-end">
-                                <div>
-                                    <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Total Estimado</span>
-                                    <div class="flex items-baseline gap-1.5">
-                                        <span id="final-total" class="text-4xl font-black tracking-tighter text-slate-900">$0</span>
-                                        <span class="text-[10px] font-bold text-slate-400">CLP</span>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <span class="block text-[10px] font-bold text-green-600 uppercase">Iva Incluido</span>
-                                    <span class="block text-[9px] text-slate-400 italic leading-none">Material y MO</span>
-                                </div>
-                            </div>
-
-                            <button id="btn-whatsapp" onclick="showInstructionModal()" class="w-full bg-slate-100 text-slate-400 font-black py-4 rounded-xl flex justify-center items-center gap-3 transition-all cursor-not-allowed uppercase text-[10px] tracking-widest border border-slate-200">
-                                <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                <span id="btn-text">Ingresa datos arriba</span>
-                            </button>
-                        </div>
-                    </div>
+            <div id="success-message" class="py-20 text-center animate-in fade-in zoom-in">
+                <div class="w-24 h-24 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-8">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
                 </div>
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4">¡Solicitud Recibida!</h2>
+                <p class="text-slate-400 mb-10">Hemos recibido tus datos correctamente. Un ingeniero se pondrá en contacto contigo pronto.</p>
+                <button onclick="location.reload()" class="bg-amber-500 text-slate-900 font-black px-8 py-4 rounded-2xl uppercase text-[10px]">Nueva Cotización</button>
+            </div>
+
+            <div id="main-grid" class="grid lg:grid-cols-12 gap-10 items-start">
+                <div class="lg:col-span-8 space-y-12">
+                    <section>
+                        <div class="flex items-center mb-8"><span class="step-badge">1</span><h2 class="text-lg font-black uppercase text-white">Servicios</h2></div>
+                        <div id="categories-container" class="grid md:grid-cols-2 gap-6"></div>
+                    </section>
+
+                    <section id="contact-section" class="card-custom p-8 border-l-4 border-l-amber-500 opacity-30 pointer-events-none transition-all">
+                        <div class="flex items-center gap-4 mb-8"><span class="step-badge">2</span><h2 class="text-lg font-black uppercase text-white">Datos de Contacto</h2></div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="md:col-span-2"><input type="text" id="c-name" name="nombre" placeholder="Nombre completo" class="w-full px-5 py-4 rounded-2xl input-dark"></div>
+                            <div><input type="tel" id="c-phone" name="telefono" placeholder="WhatsApp / Teléfono" class="w-full px-5 py-4 rounded-2xl input-dark"></div>
+                            <div><input type="email" id="c-email" name="email" placeholder="Tu Email" class="w-full px-5 py-4 rounded-2xl input-dark"></div>
+                            <div class="md:col-span-2"><textarea id="c-details" name="mensaje" placeholder="Describe brevemente el trabajo a realizar..." rows="4" class="w-full px-5 py-4 rounded-2xl input-dark resize-none"></textarea></div>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="lg:col-span-4 lg:sticky lg:top-24">
+                    <div class="card-custom p-8 bg-slate-800/40">
+                        <h2 class="font-black text-xl uppercase mb-6 text-amber-500">Resumen</h2>
+                        <div id="cart-items" class="space-y-3 mb-8"></div>
+                        <button id="submit-btn" onclick="handleSaveRequest()" disabled class="w-full bg-slate-700 text-slate-400 font-black py-5 rounded-2xl flex items-center justify-center gap-3 transition-all uppercase tracking-widest text-xs">
+                            Enviar Solicitud
+                        </button>
+                        <p class="text-[9px] text-slate-500 mt-4 text-center uppercase tracking-widest">Protección de datos Cloudflare SSL</p>
+                    </div>
+                </aside>
             </div>
         </div>
     </main>
 
     <script>
-        const WHATSAPP_NUMBER = "56920986662"; 
-
-        const COSTS = { 
-            METRO_COST: 2200,
-            MAINTENANCE_FACTOR_POINTS: 0.45,
-            MAINTENANCE_TABLERO_RATIO: 0.60,
-            MAINTENANCE_TIERRA_RATIO: 0.50
-        };
-
+        // CONFIGURACIÓN CLOUDFLARE
+        const CLOUDFLARE_WORKER_URL = "https://inselt-cotizador.diazm-profesional.workers.dev/"; 
+        
         const DATABASE = {
-            categories: [
-                {
-                    name: "🔌 Enchufes",
-                    items: [
-                        { id: "e_simple_10", name: "Punto Enchufe Simple 10A", desc: "Módulo único estándar.", basePrice: 34000, isPoint: true, icon: "plug" },
-                        { id: "e_doble_10", name: "Punto Enchufe Doble 10A", desc: "Placa doble habitacional.", basePrice: 42000, isPoint: true, icon: "plug-2" },
-                        { id: "e_triple_10", name: "Punto Enchufe Triple 10A", desc: "Placa triple carga liviana.", basePrice: 49000, isPoint: true, icon: "grid" },
-                        { id: "e_simple_16", name: "Punto Enchufe Simple 16A", desc: "Reforzado para fuerza.", basePrice: 55000, isPoint: true, icon: "zap" },
-                        { id: "e_doble_16", name: "Punto Enchufe Doble 16A", desc: "Placa doble fuerza reforzada.", basePrice: 64000, isPoint: true, icon: "zap" },
-                        { id: "e_estanco", name: "Enchufe Estanco IP65", desc: "Protección exterior.", basePrice: 68000, isPoint: true, icon: "droplets" }
-                    ]
-                },
-                {
-                    name: "💡 Iluminación",
-                    items: [
-                        { id: "l_12w", name: "Punto Ilum. LED 12W", desc: "Foco embutido/sobrepuesto básico.", basePrice: 32000, isPoint: true, icon: "sun" },
-                        { id: "l_18w", name: "Punto Ilum. LED 18W", desc: "Potencia estándar oficinas.", basePrice: 38000, isPoint: true, icon: "sun" },
-                        { id: "l_24w", name: "Punto Ilum. LED 24W", desc: "Alta luminosidad.", basePrice: 45000, isPoint: true, icon: "sun" },
-                        { id: "l_simple_i", name: "Interruptor Simple (9/12)", desc: "Control para 1 zona.", basePrice: 24000, isPoint: true, icon: "toggle-right" },
-                        { id: "l_doble_i", name: "Interruptor Doble (9/15)", desc: "Control para 2 zonas.", basePrice: 30000, isPoint: true, icon: "toggle-right" },
-                        { id: "l_triple_i", name: "Interruptor Triple (9/32)", desc: "Control para 3 zonas.", basePrice: 36000, isPoint: true, icon: "grid" },
-                        { id: "l_comuta", name: "Conmutado (9/24)", desc: "Control desde 2 puntos.", basePrice: 55000, isPoint: true, icon: "refresh-cw" }
-                    ]
-                },
-                {
-                    name: "🗄️ Tableros",
-                    items: [
-                        { id: "t_2_e_pvc", name: "Tablero 2-4 Mod. PVC Embutido", desc: "Circuitos únicos.", basePrice: 75000, scalesWithComplexity: true, isTablero: true, icon: "box" },
-                        { id: "t_6_e_pvc", name: "Tablero 6 Mod. PVC Embutido", desc: "Residencial liviano.", basePrice: 145000, scalesWithComplexity: true, isTablero: true, icon: "box" },
-                        { id: "t_6_s_pvc", name: "Tablero 6 Mod. PVC Sobrepuesto", desc: "Instalación rápida.", basePrice: 135000, scalesWithComplexity: true, isTablero: true, icon: "box" },
-                        { id: "t_12_e_pvc", name: "Tablero 12 Mod. PVC Embutido", desc: "Vivienda estándar.", basePrice: 245000, scalesWithComplexity: true, isTablero: true, icon: "layout" },
-                        { id: "t_12_s_pvc", name: "Tablero 12 Mod. PVC Sobrepuesto", desc: "Vivienda estándar.", basePrice: 230000, scalesWithComplexity: true, isTablero: true, icon: "layout" },
-                        { id: "t_18_e_pvc", name: "Tablero 18 Mod. PVC Embutido", desc: "Casas medianas.", basePrice: 320000, scalesWithComplexity: true, isTablero: true, icon: "layout" },
-                        { id: "t_24_e_pvc", name: "Tablero 24 Mod. PVC Embutido", desc: "Vivienda completa.", basePrice: 395000, scalesWithComplexity: true, isTablero: true, icon: "grid" },
-                        { id: "t_36_e_pvc", name: "Tablero 36 Mod. PVC Embutido", desc: "Gran escala.", basePrice: 540000, scalesWithComplexity: true, isTablero: true, icon: "server" },
-                        { id: "t_24_e_met", name: "Tablero 24 Mod. Metal Embutido", desc: "Reforzado profesional.", basePrice: 470000, scalesWithComplexity: true, isTablero: true, icon: "shield" },
-                        { id: "t_36_e_met", name: "Tablero 36 Mod. Metal Embutido", desc: "Gran escala / Industrial.", basePrice: 720000, scalesWithComplexity: true, isTablero: true, icon: "server" }
-                    ]
-                },
-                {
-                    name: "🌱 Tierras",
-                    items: [
-                        { id: "pt_barra", name: "Puesta a Tierra (Barra)", desc: "Barra Cooper 1.5m.", basePrice: 165000, scalesWithDistance: true, isTierra: true, icon: "arrow-down" },
-                        { id: "pt_malla", name: "Malla Tierra 1.5x1.5m", desc: "Cobre desnudo.", basePrice: 580000, scalesWithDistance: true, isTierra: true, icon: "maximize" }
-                    ]
-                },
-                {
-                    name: "📐 Planos",
-                    items: [
-                        { id: "p_diseno", name: "Plano Eléctrico As-Built", desc: "Dibujo técnico.", basePrice: 85000, scalesWithArea: true, icon: "pencil-ruler" },
-                        { id: "p_te1", name: "Certificación TE1 (SEC)", desc: "Validación legal.", basePrice: 125000, scalesWithArea: true, icon: "file-check" },
-                        { id: "p_levant", name: "Levantamiento Técnico", desc: "Inspección inicial.", basePrice: 55000, scalesWithArea: true, icon: "search" }
-                    ]
-                }
+            services: [
+                { id: 'reparacion', name: 'Reparaciones Eléctricas', desc: 'Fallas y cortocircuitos.' },
+                { id: 'nueva', name: 'Instalaciones Nuevas', desc: 'Montajes y tableros.' },
+                { id: 'sec', name: 'Certificación SEC', desc: 'Trámites TE1 y planos.' },
+                { id: 'malla', name: 'Mallas de Tierra', desc: 'Sistemas de protección.' }
             ]
         };
 
         let cart = {};
-        let activeTab = DATABASE.categories[0].name;
-        let workMode = 'new'; 
 
-        function init() {
-            renderTabs();
-            renderItems();
-            updateTotals();
-            lucide.createIcons();
-        }
-
-        function validateAndRefresh() {
-            const sizeValue = document.getElementById('house-size').value;
-            const size = parseFloat(sizeValue);
-            const name = document.getElementById('c-name').value.trim();
-            const catalog = document.getElementById('catalog-section');
-            const btn = document.getElementById('btn-whatsapp');
-            const badge = document.getElementById('step-2-badge');
-            const inputSize = document.getElementById('house-size');
-
-            const isSizeOk = !isNaN(size) && size > 0;
-            const isNameOk = name.length >= 3;
-
-            if (isSizeOk) {
-                catalog.classList.remove('step-locked');
-                badge.classList.add('bg-orange-600', 'text-white');
-                badge.classList.remove('bg-slate-200', 'text-slate-500');
-                inputSize.classList.remove('pulse-input');
-            } else {
-                catalog.classList.add('step-locked');
-                inputSize.classList.add('pulse-input');
-            }
-
-            if (isSizeOk && isNameOk) {
-                btn.className = "w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-xl flex justify-center items-center gap-3 shadow-lg shadow-green-100 uppercase text-[10px] tracking-widest cursor-pointer transition-all active:scale-95";
-                document.getElementById('btn-text').innerText = "Solicitar vía WhatsApp";
-                btn.classList.remove('cursor-not-allowed');
-            } else {
-                btn.className = "w-full bg-slate-100 text-slate-400 font-black py-4 rounded-xl flex justify-center items-center gap-3 transition-all cursor-not-allowed uppercase text-[10px] tracking-widest border border-slate-200";
-                document.getElementById('btn-text').innerText = "Faltan datos";
-            }
-            
-            updateTotals();
-            renderItems();
-        }
-
-        function showInstructionModal() {
-            const size = parseFloat(document.getElementById('house-size').value);
-            const name = document.getElementById('c-name').value.trim();
-            if (size > 0 && name.length >= 3) {
-                document.getElementById('instruction-modal').classList.remove('hidden');
-            }
-        }
-
-        function closeInstructions() {
-            document.getElementById('instruction-modal').classList.add('hidden');
-            sendToWhatsApp();
-        }
-
-        function setWorkMode(mode) {
-            workMode = mode;
-            document.querySelectorAll('.work-type-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`mode-${mode}`).classList.add('active');
-            renderItems();
-        }
-
-        function renderTabs() {
-            const container = document.getElementById('tabs-container');
-            container.innerHTML = DATABASE.categories.map(cat => `
-                <button onclick="setTab('${cat.name}')" class="px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider border border-slate-200 bg-white text-slate-500 whitespace-nowrap transition-all ${activeTab === cat.name ? 'active-tab' : ''}">
-                    ${cat.name}
-                </button>
+        function renderServices() {
+            const container = document.getElementById('categories-container');
+            container.innerHTML = DATABASE.services.map(item => `
+                <div id="card-${item.id}" onclick="toggleService('${item.id}')" class="item-card p-6 flex flex-col justify-between">
+                    <div><h4 class="text-sm font-black text-white mb-2 uppercase">${item.name}</h4><p class="text-[11px] text-slate-500 font-medium">${item.desc}</p></div>
+                    <div class="flex justify-end mt-4"><span id="status-${item.id}" class="text-[9px] font-black uppercase py-1 px-3 rounded bg-slate-900 text-slate-500">Seleccionar</span></div>
+                </div>
             `).join('');
         }
 
-        function setTab(name) {
-            activeTab = name;
-            renderTabs();
-            renderItems();
+        function toggleService(id) {
+            if (cart[id]) delete cart[id]; else cart[id] = true;
+            updateUI();
         }
 
-        function renderItems() {
-            const container = document.getElementById('catalog-items');
-            const category = DATABASE.categories.find(c => c.name === activeTab);
+        function updateUI() {
+            const items = Object.keys(cart);
+            DATABASE.services.forEach(s => {
+                const card = document.getElementById(`card-${s.id}`);
+                const status = document.getElementById(`status-${s.id}`);
+                if(cart[s.id]) {
+                    card.classList.add('active');
+                    status.innerText = "✓";
+                    status.classList.replace('bg-slate-900', 'bg-amber-500');
+                    status.classList.replace('text-slate-500', 'text-slate-900');
+                } else {
+                    card.classList.remove('active');
+                    status.innerText = "Seleccionar";
+                    status.classList.replace('bg-amber-500', 'bg-slate-900');
+                    status.classList.replace('text-slate-900', 'text-slate-500');
+                }
+            });
+
+            document.getElementById('contact-section').style.opacity = items.length > 0 ? "1" : "0.3";
+            document.getElementById('contact-section').style.pointerEvents = items.length > 0 ? "auto" : "none";
             
-            container.innerHTML = category.items.map(item => {
-                const cartKey = `${item.id}_${workMode}`;
-                const qty = cart[cartKey]?.qty || 0;
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = items.length === 0;
+            btn.className = items.length > 0 
+                ? "w-full bg-amber-500 text-slate-900 font-black py-5 rounded-2xl uppercase text-xs shadow-lg shadow-amber-500/20"
+                : "w-full bg-slate-700 text-slate-400 font-black py-5 rounded-2xl uppercase text-xs";
+
+            document.getElementById('cart-items').innerHTML = items.map(id => {
+                const s = DATABASE.services.find(x => x.id === id);
+                return `<div class="text-[10px] font-bold text-slate-300 py-1 border-b border-white/5 uppercase">• ${s.name}</div>`;
+            }).join('') || '<p class="text-slate-500 text-[10px] text-center py-4">Selecciona un servicio</p>';
+        }
+
+        async function handleSaveRequest() {
+            const btn = document.getElementById('submit-btn');
+            const data = {
+                nombre: document.getElementById('c-name').value,
+                telefono: document.getElementById('c-phone').value,
+                email: document.getElementById('c-email').value,
+                mensaje: document.getElementById('c-details').value,
+                servicios: Object.keys(cart).map(id => DATABASE.services.find(s => s.id === id).name).join(', ')
+            };
+
+            if (!data.nombre || !data.telefono) {
+                alert("Indica nombre y teléfono.");
+                return;
+            }
+
+            btn.innerHTML = `<div class="loading-spinner"></div> Enviando...`;
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
                 
-                return `
-                <div class="item-appear bg-white p-4 rounded-2xl border border-slate-100 flex items-center justify-between shadow-sm hover:border-orange-200 transition-all gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-slate-50 text-orange-600 rounded-xl shrink-0 flex items-center justify-center">
-                            <i data-lucide="${item.icon}" class="w-5 h-5"></i>
-                        </div>
-                        <div class="flex flex-col min-w-0">
-                            <h4 class="text-[10px] font-black text-slate-800 uppercase tracking-tight break-words leading-tight">${item.name}</h4>
-                            <p class="text-[9px] text-slate-400 font-medium leading-tight mt-1 break-words">${item.desc}</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center bg-slate-100 rounded-xl p-1 shrink-0 ml-auto">
-                        <button onclick="updateQty('${item.id}', -1)" class="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-red-500 active:scale-90 transition-all">
-                            <i data-lucide="minus" class="w-3"></i>
-                        </button>
-                        <span class="w-8 text-center text-xs font-black text-slate-800">${qty}</span>
-                        <button onclick="updateQty('${item.id}', 1)" class="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-orange-600 active:scale-90 transition-all">
-                            <i data-lucide="plus" class="w-3"></i>
-                        </button>
-                    </div>
-                </div>
-                `;
-            }).join('');
-            lucide.createIcons();
-        }
+                if (response.ok) {
+                    // Evento de conversión para Google Analytics (opcional)
+                    if(typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'Cotización',
+                            'event_label': 'Formulario Presupuesto'
+                        });
+                    }
 
-        function updateQty(itemId, delta) {
-            const cartKey = `${itemId}_${workMode}`;
-            if (!cart[cartKey]) cart[cartKey] = { itemId, qty: 0, mode: workMode };
-            cart[cartKey].qty = Math.max(0, cart[cartKey].qty + delta);
-            if (cart[cartKey].qty === 0) delete cart[cartKey];
-            updateTotals();
-            renderItems();
-        }
-
-        function clearCart() {
-            cart = {};
-            updateTotals();
-            renderItems();
-        }
-
-        function getItemPrice(item, mode) {
-            const size = parseFloat(document.getElementById('house-size').value) || 0;
-            const factor = parseFloat(document.getElementById('diff-factor').value) || 1;
-            const distExtra = Math.max(0, (Math.sqrt(size) - 7) * 0.8);
-            
-            let obraNuevaPrice = item.basePrice;
-            
-            if (item.isPoint) {
-                obraNuevaPrice += (distExtra * COSTS.METRO_COST * factor);
-            } else if (item.scalesWithArea && size > 60) {
-                obraNuevaPrice *= (1 + ((size - 60) / 100) * 0.25);
-            } else if (item.scalesWithComplexity) {
-                obraNuevaPrice *= factor;
-            } else if (item.scalesWithDistance) {
-                obraNuevaPrice += (distExtra * COSTS.METRO_COST * factor * 2); 
+                    document.getElementById('main-grid').style.display = 'none';
+                    document.getElementById('form-header').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                    window.scrollTo(0,0);
+                } else {
+                    throw new Error("Error en servidor");
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Hubo un problema al enviar la solicitud. Inténtalo de nuevo.");
+                btn.innerHTML = "Reintentar envío";
+                btn.disabled = false;
             }
-
-            if (mode === 'fix') {
-                if (item.isPoint) return obraNuevaPrice * COSTS.MAINTENANCE_FACTOR_POINTS;
-                if (item.isTablero) return obraNuevaPrice * COSTS.MAINTENANCE_TABLERO_RATIO;
-                if (item.isTierra) return obraNuevaPrice * COSTS.MAINTENANCE_TIERRA_RATIO;
-                return obraNuevaPrice * 0.5;
-            }
-            return obraNuevaPrice;
         }
 
-        function getCalculatedTotal() {
-            let total = 0;
-            const allItems = DATABASE.categories.flatMap(c => c.items);
-            Object.entries(cart).forEach(([key, data]) => {
-                const item = allItems.find(x => x.id === data.itemId);
-                total += (getItemPrice(item, data.mode) * data.qty);
-            });
-            return total;
-        }
-
-        function updateTotals() {
-            const list = document.getElementById('cart-list');
-            list.innerHTML = '';
-            const allItems = DATABASE.categories.flatMap(c => c.items);
-            
-            Object.entries(cart).forEach(([key, data]) => {
-                const item = allItems.find(x => x.id === data.itemId);
-                
-                list.innerHTML += `
-                    <div class="flex justify-between items-start p-3 bg-slate-50 rounded-xl border border-slate-100 item-appear gap-3">
-                        <div class="flex items-start gap-3 flex-1 min-w-0">
-                            <span class="w-6 h-6 rounded-lg ${data.mode === 'fix' ? 'bg-blue-600' : 'bg-orange-600'} text-white flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">${data.qty}</span>
-                            <div class="flex flex-col min-w-0">
-                                <p class="text-[9px] font-black text-slate-700 uppercase tracking-tight break-words leading-snug">${item.name}</p>
-                                <span class="text-[8px] font-bold ${data.mode === 'fix' ? 'text-blue-500' : 'text-orange-500'} uppercase tracking-widest mt-0.5">
-                                    ${data.mode === 'fix' ? 'Mantención' : 'Obra Nueva'}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="text-right shrink-0">
-                             <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i>
-                        </div>
-                    </div>`;
-            });
-
-            if (Object.keys(cart).length === 0) {
-                list.innerHTML = `<div class="py-12 text-center text-slate-300 text-[10px] font-black uppercase tracking-widest flex flex-col items-center gap-3">
-                    <i data-lucide="shopping-cart" class="w-8 h-8 opacity-20"></i> Lista vacía
-                </div>`;
-            }
-
-            document.getElementById('final-total').innerText = `$${Math.round(getCalculatedTotal()).toLocaleString('es-CL')}`;
-            lucide.createIcons();
-        }
-
-        function sendToWhatsApp() {
-            const name = document.getElementById('c-name').value;
-            const size = document.getElementById('house-size').value;
-            const diff = document.getElementById('diff-factor').options[document.getElementById('diff-factor').selectedIndex].text;
-            const total = getCalculatedTotal();
-            const allItems = DATABASE.categories.flatMap(c => c.items);
-
-            let message = `*SOLICITUD PRESUPUESTO INSELT*\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `👤 *Cliente:* ${name}\n`;
-            message += `📐 *Superficie:* ${size} m²\n`;
-            message += `🛠️ *Obra:* ${diff}\n\n`;
-            message += `*DETALLE DEL PROYECTO:*\n`;
-
-            Object.entries(cart).forEach(([key, data]) => {
-                const item = allItems.find(x => x.id === data.itemId);
-                const modeLabel = data.mode === 'fix' ? '[Mantención]' : '[Obra Nueva]';
-                message += `• [${data.qty}] ${item.name} ${modeLabel}\n`;
-            });
-
-            message += `\n💰 *VALOR ESTIMADO:* $${Math.round(total).toLocaleString('es-CL')}\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `_Este presupuesto es preliminar. Sujeto a inspección técnica Clase A._`;
-
-            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-
-        window.onload = init;
+        window.onload = renderServices;
     </script>
 </body>
 </html>
