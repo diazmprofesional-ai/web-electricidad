@@ -74,6 +74,10 @@
             border-color: var(--brand-gold); 
             outline: none; 
         }
+
+        .input-dark.error {
+            border-color: #ef4444;
+        }
         
         .item-card { 
             background: rgba(15, 23, 42, 0.4); 
@@ -167,10 +171,18 @@
                     <section id="contact-section" class="card-custom p-8 border-l-4 border-l-amber-500 opacity-30 pointer-events-none transition-all">
                         <div class="flex items-center gap-4 mb-8"><span class="step-badge">2</span><h2 class="text-lg font-black uppercase text-white">Datos de Contacto</h2></div>
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div class="md:col-span-2"><input type="text" id="c-name" name="nombre" placeholder="Nombre completo" class="w-full px-5 py-4 rounded-2xl input-dark"></div>
-                            <div><input type="tel" id="c-phone" name="telefono" placeholder="WhatsApp / Teléfono" class="w-full px-5 py-4 rounded-2xl input-dark"></div>
-                            <div><input type="email" id="c-email" name="email" placeholder="Tu Email" class="w-full px-5 py-4 rounded-2xl input-dark"></div>
-                            <div class="md:col-span-2"><textarea id="c-details" name="mensaje" placeholder="Describe brevemente el trabajo a realizar..." rows="4" class="w-full px-5 py-4 rounded-2xl input-dark resize-none"></textarea></div>
+                            <div class="md:col-span-2">
+                                <input type="text" id="c-name" name="nombre" placeholder="Nombre completo" class="w-full px-5 py-4 rounded-2xl input-dark">
+                            </div>
+                            <div>
+                                <input type="tel" id="c-phone" name="telefono" placeholder="WhatsApp / Teléfono" class="w-full px-5 py-4 rounded-2xl input-dark">
+                            </div>
+                            <div>
+                                <input type="email" id="c-email" name="email" placeholder="Tu Email" class="w-full px-5 py-4 rounded-2xl input-dark">
+                            </div>
+                            <div class="md:col-span-2">
+                                <textarea id="c-details" name="mensaje" placeholder="Describe brevemente el trabajo a realizar..." rows="4" class="w-full px-5 py-4 rounded-2xl input-dark resize-none"></textarea>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -243,8 +255,8 @@
             const btn = document.getElementById('submit-btn');
             btn.disabled = items.length === 0;
             btn.className = items.length > 0 
-                ? "w-full bg-amber-500 text-slate-900 font-black py-5 rounded-2xl uppercase text-xs shadow-lg shadow-amber-500/20"
-                : "w-full bg-slate-700 text-slate-400 font-black py-5 rounded-2xl uppercase text-xs";
+                ? "w-full bg-amber-500 text-slate-900 font-black py-5 rounded-2xl uppercase text-xs shadow-lg shadow-amber-500/20 cursor-pointer"
+                : "w-full bg-slate-700 text-slate-400 font-black py-5 rounded-2xl uppercase text-xs cursor-not-allowed";
 
             document.getElementById('cart-items').innerHTML = items.map(id => {
                 const s = DATABASE.services.find(x => x.id === id);
@@ -254,43 +266,50 @@
 
         async function handleSaveRequest() {
             const btn = document.getElementById('submit-btn');
-            const formInputs = {
+            const fields = {
                 nombre: document.getElementById('c-name'),
                 telefono: document.getElementById('c-phone'),
                 email: document.getElementById('c-email'),
                 mensaje: document.getElementById('c-details')
             };
 
+            // Reset errores visuales
+            Object.values(fields).forEach(f => f.classList.remove('error'));
+
             const data = {
-                nombre: formInputs.nombre.value.trim(),
-                telefono: formInputs.telefono.value.trim(),
-                email: formInputs.email.value.trim(),
-                mensaje: formInputs.mensaje.value.trim(),
+                nombre: fields.nombre.value.trim(),
+                telefono: fields.telefono.value.trim(),
+                email: fields.email.value.trim(),
+                mensaje: fields.mensaje.value.trim(),
                 servicios: Object.keys(cart).map(id => DATABASE.services.find(s => s.id === id).name).join(', ')
             };
 
-            if (!data.nombre || !data.telefono) {
-                alert("Por favor, ingresa al menos tu nombre y teléfono de contacto.");
-                return;
-            }
+            // Validación simple
+            if (!data.nombre) { fields.nombre.classList.add('error'); return; }
+            if (!data.telefono) { fields.telefono.classList.add('error'); return; }
+            if (!data.email) { fields.email.classList.add('error'); return; }
 
-            btn.innerHTML = `<div class="loading-spinner"></div> Procesando...`;
+            btn.innerHTML = `<div class="loading-spinner"></div> Enviando...`;
             btn.disabled = true;
 
             try {
-                // Notificar a Analytics ANTES del fetch por si falla la red
                 if(typeof gtag === 'function') {
                     gtag('event', 'attempt_lead', { 'event_category': 'Cotización' });
                 }
 
+                // Llamada a la Worker
                 const response = await fetch(CLOUDFLARE_WORKER_URL, {
                     method: 'POST',
+                    mode: 'cors', // Aseguramos CORS explícitamente
                     headers: { 
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify(data)
                 });
                 
+                const result = await response.json();
+
                 if (response.ok) {
                     if(typeof gtag === 'function') {
                         gtag('event', 'generate_lead', { 'event_label': 'Éxito' });
@@ -300,12 +319,16 @@
                     document.getElementById('success-message').style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    const errorText = await response.text();
-                    throw new Error(`Servidor: ${response.status} - ${errorText}`);
+                    throw new Error(result.message || "Error en el servidor");
                 }
             } catch (e) {
                 console.error("Error en el envío:", e);
-                alert("Error técnico: " + e.message + "\n\nSi el error persiste, asegúrate de que la Worker en Cloudflare tenga habilitado el manejo de peticiones OPTIONS (CORS).");
+                // Si el error es de red, probablemente sea CORS o la Worker no está activa
+                const msg = e.message.includes('fetch') 
+                    ? "No se pudo conectar con el servidor de correos. Revisa la configuración de tu Cloudflare Worker."
+                    : e.message;
+                
+                alert("Atención: " + msg);
                 btn.innerHTML = "Reintentar envío";
                 btn.disabled = false;
             }
