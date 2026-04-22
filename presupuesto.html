@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google Tag (gtag.js) - Mantenido de la versión original -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N114LPHVBS"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,187 +13,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Cotizador de Servicios Eléctricos | INSELT Ingeniería</title>
-    <meta name="description" content="Solicita tu presupuesto para servicios eléctricos certificados. Expertos en instalaciones residenciales e industriales con respaldo SEC.">
     <link rel="icon" type="image/png" sizes="48x48" href="https://reparacioneselectricas.cl/favicon.png"> 
-    
-    <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --brand-gold: #fbbf24;
-            --brand-dark: #0f172a;
-            --brand-card: #1e293b;
-        }
-
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--brand-dark); 
-            color: white;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        .inselt-header { 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-        }
-
-        .btn-home {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 0.75rem;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card-custom { 
-            background: var(--brand-card); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 1.25rem;
-        }
-
-        .input-dark { 
-            background: rgba(15, 23, 42, 0.6); 
-            border: 1px solid rgba(255,255,255,0.1); 
-            color: white; 
-            transition: all 0.3s ease; 
-        }
-
-        .input-dark:focus { 
-            border-color: var(--brand-gold); 
-            outline: none; 
-        }
-
-        .input-dark.error {
-            border-color: #ef4444;
-        }
-        
-        .item-card { 
-            background: rgba(15, 23, 42, 0.4); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 1.25rem; 
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .item-card.active {
-            border-color: var(--brand-gold);
-            background: rgba(251, 191, 36, 0.05);
-        }
-        
-        .gradient-text { 
-            background: linear-gradient(to right, #fbbf24, #f59e0b); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-
-        .step-badge {
-            width: 24px;
-            height: 24px;
-            background: var(--brand-gold);
-            color: var(--brand-dark);
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 12px;
-            margin-right: 8px;
-        }
-
-        #success-message { display: none; }
-        
-        .loading-spinner {
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top: 3px solid #fbbf24;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-        }
+        :root { --brand-gold: #fbbf24; --brand-dark: #0f172a; --brand-card: #1e293b; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--brand-dark); color: white; -webkit-font-smoothing: antialiased; }
+        .inselt-header { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
+        .card-custom { background: var(--brand-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 1.25rem; }
+        .input-dark { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.1); color: white; transition: all 0.3s ease; }
+        .input-dark:focus { border-color: var(--brand-gold); outline: none; }
+        .item-card { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 1.25rem; cursor: pointer; }
+        .item-card.active { border-color: var(--brand-gold); background: rgba(251, 191, 36, 0.05); }
+        .gradient-text { background: linear-gradient(to right, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .step-badge { width: 24px; height: 24px; background: var(--brand-gold); color: var(--brand-dark); border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; margin-right: 8px; }
+        #success-message, #error-message { display: none; }
+        .loading-spinner { border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid #fbbf24; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="inselt-header fixed top-0 left-0 w-full z-[9999] border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="https://reparacioneselectricas.cl/" class="flex items-center gap-3 no-underline">
+    <header class="inselt-header fixed top-0 left-0 w-full z-[9999] border-b border-white/5 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="https://reparacioneselectricas.cl/" class="flex items-center gap-3">
                 <div class="bg-amber-500 text-slate-950 w-10 h-10 flex items-center justify-center rounded-xl font-black text-xl">IN</div>
                 <div class="flex flex-col leading-none">
                     <span class="text-white text-xl font-extrabold uppercase">Inselt</span>
                     <span class="text-amber-400 text-[10px] font-bold uppercase tracking-[0.25em]">Ingeniería</span>
                 </div>
             </a>
-            <a href="https://reparacioneselectricas.cl/" class="btn-home">Volver</a>
         </div>
     </header>
 
     <main class="pt-32 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
             
-            <div id="form-header" class="mb-12">
+            <div id="form-header" class="mb-12 text-center md:text-left">
                 <h1 class="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">
-                    Gestión de <br><span class="gradient-text">Proyectos Eléctricos</span>
+                    Solicitud de <span class="gradient-text">Presupuesto</span>
                 </h1>
-                <p class="text-slate-400 font-medium max-w-xl">
-                    Solicita tu presupuesto técnico. Los datos se procesarán de forma segura a través de nuestra infraestructura en Cloudflare.
-                </p>
+                <p class="text-slate-400">Completa el formulario para recibir una propuesta técnica formal.</p>
             </div>
 
-            <div id="success-message" class="py-20 text-center animate-in fade-in zoom-in">
-                <div class="w-24 h-24 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-8">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
-                </div>
-                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4">¡Solicitud Recibida!</h2>
-                <p class="text-slate-400 mb-10">Hemos recibido tus datos correctamente. Un ingeniero se pondrá en contacto contigo pronto.</p>
-                <button onclick="location.reload()" class="bg-amber-500 text-slate-900 font-black px-8 py-4 rounded-2xl uppercase text-[10px]">Nueva Cotización</button>
+            <div id="success-message" class="py-20 text-center">
+                <h2 class="text-4xl font-black text-green-500 mb-4">¡ENVIADO EXITOSAMENTE!</h2>
+                <p class="text-slate-400 mb-8">Revisa tu correo (y la carpeta de SPAM) en los próximos minutos.</p>
+                <button onclick="location.reload()" class="bg-amber-500 text-slate-900 font-black px-8 py-4 rounded-xl">NUEVA CONSULTA</button>
             </div>
 
-            <div id="main-grid" class="grid lg:grid-cols-12 gap-10 items-start">
+            <div id="error-message" class="py-10 text-center">
+                <h3 class="text-2xl font-black text-red-500 mb-2">ERROR AL ENVIAR</h3>
+                <p id="error-text" class="text-slate-400 mb-8">No pudimos procesar tu solicitud.</p>
+                <button onclick="retryForm()" class="bg-slate-700 text-white font-black px-6 py-3 rounded-xl">REINTENTAR</button>
+            </div>
+
+            <div id="main-grid" class="grid lg:grid-cols-12 gap-10">
                 <div class="lg:col-span-8 space-y-12">
                     <section>
-                        <div class="flex items-center mb-8"><span class="step-badge">1</span><h2 class="text-lg font-black uppercase text-white">Servicios</h2></div>
-                        <div id="categories-container" class="grid md:grid-cols-2 gap-6"></div>
+                        <h2 class="text-lg font-black uppercase mb-6 flex items-center"><span class="step-badge">1</span>¿Qué necesitas?</h2>
+                        <div id="services-grid" class="grid md:grid-cols-2 gap-4"></div>
                     </section>
 
-                    <section id="contact-section" class="card-custom p-8 border-l-4 border-l-amber-500 opacity-30 pointer-events-none transition-all">
-                        <div class="flex items-center gap-4 mb-8"><span class="step-badge">2</span><h2 class="text-lg font-black uppercase text-white">Datos de Contacto</h2></div>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="md:col-span-2">
-                                <input type="text" id="c-name" name="nombre" placeholder="Nombre completo" class="w-full px-5 py-4 rounded-2xl input-dark">
-                            </div>
-                            <div>
-                                <input type="tel" id="c-phone" name="telefono" placeholder="WhatsApp / Teléfono" class="w-full px-5 py-4 rounded-2xl input-dark">
-                            </div>
-                            <div>
-                                <input type="email" id="c-email" name="email" placeholder="Tu Email" class="w-full px-5 py-4 rounded-2xl input-dark">
-                            </div>
-                            <div class="md:col-span-2">
-                                <textarea id="c-details" name="mensaje" placeholder="Describe brevemente el trabajo a realizar..." rows="4" class="w-full px-5 py-4 rounded-2xl input-dark resize-none"></textarea>
-                            </div>
+                    <section id="contact-section" class="card-custom p-8 opacity-40 pointer-events-none transition-all">
+                        <h2 class="text-lg font-black uppercase mb-6 flex items-center"><span class="step-badge">2</span>Tus Datos</h2>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" id="c-name" placeholder="Nombre" class="w-full p-4 rounded-xl input-dark">
+                            <input type="tel" id="c-phone" placeholder="Teléfono" class="w-full p-4 rounded-xl input-dark">
+                            <input type="email" id="c-email" placeholder="Email" class="md:col-span-2 w-full p-4 rounded-xl input-dark">
+                            <textarea id="c-details" placeholder="Cuéntanos más sobre el proyecto..." rows="3" class="md:col-span-2 w-full p-4 rounded-xl input-dark"></textarea>
                         </div>
                     </section>
                 </div>
 
-                <aside class="lg:col-span-4 lg:sticky lg:top-24">
-                    <div class="card-custom p-8 bg-slate-800/40">
-                        <h2 class="font-black text-xl uppercase mb-6 text-amber-500">Resumen</h2>
-                        <div id="cart-items" class="space-y-3 mb-8"></div>
-                        <button id="submit-btn" onclick="handleSaveRequest()" disabled class="w-full bg-slate-700 text-slate-400 font-black py-5 rounded-2xl flex items-center justify-center gap-3 transition-all uppercase tracking-widest text-xs">
-                            Enviar Solicitud
+                <aside class="lg:col-span-4">
+                    <div class="card-custom p-6 sticky top-24 bg-slate-800/50">
+                        <h3 class="font-black uppercase text-amber-500 mb-4">Resumen</h3>
+                        <div id="summary" class="text-xs space-y-2 mb-6 text-slate-300">Selecciona al menos un servicio...</div>
+                        <button id="submit-btn" onclick="sendData()" disabled class="w-full bg-slate-700 text-slate-500 font-black py-4 rounded-xl uppercase text-xs transition-all">
+                            Enviar Presupuesto
                         </button>
-                        <p class="text-[9px] text-slate-500 mt-4 text-center uppercase tracking-widest">Protección de datos Cloudflare SSL</p>
                     </div>
                 </aside>
             </div>
@@ -202,139 +101,101 @@
     </main>
 
     <script>
-        // CONFIGURACIÓN CLOUDFLARE
-        const CLOUDFLARE_WORKER_URL = "https://inselt-cotizador.diazm-profesional.workers.dev/"; 
-        
-        const DATABASE = {
-            services: [
-                { id: 'reparacion', name: 'Reparaciones Eléctricas', desc: 'Fallas y cortocircuitos.' },
-                { id: 'nueva', name: 'Instalaciones Nuevas', desc: 'Montajes y tableros.' },
-                { id: 'sec', name: 'Certificación SEC', desc: 'Trámites TE1 y planos.' },
-                { id: 'malla', name: 'Mallas de Tierra', desc: 'Sistemas de protección.' }
-            ]
-        };
+        const API_URL = "https://inselt-cotizador.diazm-profesional.workers.dev/";
+        const SERVICES = [
+            { id: 'rep', name: 'Reparaciones', desc: 'Fallas y urgencias' },
+            { id: 'inst', name: 'Instalaciones', desc: 'Nuevos puntos o redes' },
+            { id: 'sec', name: 'Certificación SEC', desc: 'TE1 y regularizaciones' },
+            { id: 'plan', name: 'Proyectos/Planos', desc: 'Diseño de ingeniería' }
+        ];
 
-        let cart = {};
+        let selected = [];
 
-        function renderServices() {
-            const container = document.getElementById('categories-container');
-            container.innerHTML = DATABASE.services.map(item => `
-                <div id="card-${item.id}" onclick="toggleService('${item.id}')" class="item-card p-6 flex flex-col justify-between">
-                    <div><h4 class="text-sm font-black text-white mb-2 uppercase">${item.name}</h4><p class="text-[11px] text-slate-500 font-medium">${item.desc}</p></div>
-                    <div class="flex justify-end mt-4"><span id="status-${item.id}" class="text-[9px] font-black uppercase py-1 px-3 rounded bg-slate-900 text-slate-500">Seleccionar</span></div>
+        function render() {
+            document.getElementById('services-grid').innerHTML = SERVICES.map(s => `
+                <div onclick="toggle('${s.id}')" id="s-${s.id}" class="item-card p-5">
+                    <div class="font-bold text-sm uppercase">${s.name}</div>
+                    <div class="text-[10px] text-slate-500">${s.desc}</div>
                 </div>
             `).join('');
         }
 
-        function toggleService(id) {
-            if (cart[id]) delete cart[id]; else cart[id] = true;
-            updateUI();
+        function toggle(id) {
+            if(selected.includes(id)) selected = selected.filter(x => x !== id);
+            else selected.push(id);
+            update();
         }
 
-        function updateUI() {
-            const items = Object.keys(cart);
-            DATABASE.services.forEach(s => {
-                const card = document.getElementById(`card-${s.id}`);
-                const status = document.getElementById(`status-${s.id}`);
-                if(cart[s.id]) {
-                    card.classList.add('active');
-                    status.innerText = "✓";
-                    status.classList.replace('bg-slate-900', 'bg-amber-500');
-                    status.classList.replace('text-slate-500', 'text-slate-900');
-                } else {
-                    card.classList.remove('active');
-                    status.innerText = "Seleccionar";
-                    status.classList.replace('bg-amber-500', 'bg-slate-900');
-                    status.classList.replace('text-slate-900', 'text-slate-500');
-                }
+        function update() {
+            SERVICES.forEach(s => {
+                const el = document.getElementById(`s-${s.id}`);
+                el.className = selected.includes(s.id) ? 'item-card p-5 active' : 'item-card p-5';
             });
 
-            document.getElementById('contact-section').style.opacity = items.length > 0 ? "1" : "0.3";
-            document.getElementById('contact-section').style.pointerEvents = items.length > 0 ? "auto" : "none";
+            const contact = document.getElementById('contact-section');
+            const btn = document.getElementById('submit-btn');
             
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = items.length === 0;
-            btn.className = items.length > 0 
-                ? "w-full bg-amber-500 text-slate-900 font-black py-5 rounded-2xl uppercase text-xs shadow-lg shadow-amber-500/20 cursor-pointer"
-                : "w-full bg-slate-700 text-slate-400 font-black py-5 rounded-2xl uppercase text-xs cursor-not-allowed";
-
-            document.getElementById('cart-items').innerHTML = items.map(id => {
-                const s = DATABASE.services.find(x => x.id === id);
-                return `<div class="text-[10px] font-bold text-slate-300 py-1 border-b border-white/5 uppercase">• ${s.name}</div>`;
-            }).join('') || '<p class="text-slate-500 text-[10px] text-center py-4">Selecciona un servicio</p>';
-        }
-
-        async function handleSaveRequest() {
-            const btn = document.getElementById('submit-btn');
-            const fields = {
-                nombre: document.getElementById('c-name'),
-                telefono: document.getElementById('c-phone'),
-                email: document.getElementById('c-email'),
-                mensaje: document.getElementById('c-details')
-            };
-
-            // Reset errores visuales
-            Object.values(fields).forEach(f => f.classList.remove('error'));
-
-            const data = {
-                nombre: fields.nombre.value.trim(),
-                telefono: fields.telefono.value.trim(),
-                email: fields.email.value.trim(),
-                mensaje: fields.mensaje.value.trim(),
-                servicios: Object.keys(cart).map(id => DATABASE.services.find(s => s.id === id).name).join(', ')
-            };
-
-            // Validación simple
-            if (!data.nombre) { fields.nombre.classList.add('error'); return; }
-            if (!data.telefono) { fields.telefono.classList.add('error'); return; }
-            if (!data.email) { fields.email.classList.add('error'); return; }
-
-            btn.innerHTML = `<div class="loading-spinner"></div> Enviando...`;
-            btn.disabled = true;
-
-            try {
-                if(typeof gtag === 'function') {
-                    gtag('event', 'attempt_lead', { 'event_category': 'Cotización' });
-                }
-
-                // Llamada a la Worker
-                const response = await fetch(CLOUDFLARE_WORKER_URL, {
-                    method: 'POST',
-                    mode: 'cors', // Aseguramos CORS explícitamente
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                const result = await response.json();
-
-                if (response.ok) {
-                    if(typeof gtag === 'function') {
-                        gtag('event', 'generate_lead', { 'event_label': 'Éxito' });
-                    }
-                    document.getElementById('main-grid').style.display = 'none';
-                    document.getElementById('form-header').style.display = 'none';
-                    document.getElementById('success-message').style.display = 'block';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    throw new Error(result.message || "Error en el servidor");
-                }
-            } catch (e) {
-                console.error("Error en el envío:", e);
-                // Si el error es de red, probablemente sea CORS o la Worker no está activa
-                const msg = e.message.includes('fetch') 
-                    ? "No se pudo conectar con el servidor de correos. Revisa la configuración de tu Cloudflare Worker."
-                    : e.message;
-                
-                alert("Atención: " + msg);
-                btn.innerHTML = "Reintentar envío";
+            if(selected.length > 0) {
+                contact.style.opacity = "1";
+                contact.style.pointerEvents = "auto";
                 btn.disabled = false;
+                btn.className = "w-full bg-amber-500 text-slate-900 font-black py-4 rounded-xl uppercase text-xs shadow-lg shadow-amber-500/20";
+                document.getElementById('summary').innerHTML = selected.map(id => `• ${SERVICES.find(x => x.id === id).name}`).join('<br>');
+            } else {
+                contact.style.opacity = "0.4";
+                contact.style.pointerEvents = "none";
+                btn.disabled = true;
+                btn.className = "w-full bg-slate-700 text-slate-500 font-black py-4 rounded-xl uppercase text-xs";
+                document.getElementById('summary').innerText = "Selecciona al menos un servicio...";
             }
         }
 
-        window.onload = renderServices;
+        function retryForm() {
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('main-grid').style.display = 'grid';
+            document.getElementById('form-header').style.display = 'block';
+        }
+
+        async function sendData() {
+            const btn = document.getElementById('submit-btn');
+            const data = {
+                nombre: document.getElementById('c-name').value,
+                telefono: document.getElementById('c-phone').value,
+                email: document.getElementById('c-email').value,
+                mensaje: document.getElementById('c-details').value,
+                servicios: selected.map(id => SERVICES.find(x => x.id === id).name).join(', ')
+            };
+
+            if(!data.nombre || !data.email) return alert("Nombre y Email son obligatorios");
+
+            btn.innerHTML = `<div class="loading-spinner mx-auto"></div>`;
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if(res.ok) {
+                    document.getElementById('main-grid').style.display = 'none';
+                    document.getElementById('form-header').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                } else {
+                    throw new Error("Respuesta no válida del servidor");
+                }
+            } catch (e) {
+                document.getElementById('main-grid').style.display = 'none';
+                document.getElementById('form-header').style.display = 'none';
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('error-text').innerText = "La Worker respondió con un error. Revisa el código de la Worker en Cloudflare.";
+                btn.disabled = false;
+                btn.innerText = "Enviar Presupuesto";
+            }
+        }
+
+        render();
     </script>
 </body>
 </html>
