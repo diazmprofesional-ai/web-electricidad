@@ -278,47 +278,34 @@
             btn.disabled = true;
 
             try {
-                // Petición al Worker
+                // Notificar a Analytics ANTES del fetch por si falla la red
+                if(typeof gtag === 'function') {
+                    gtag('event', 'attempt_lead', { 'event_category': 'Cotización' });
+                }
+
                 const response = await fetch(CLOUDFLARE_WORKER_URL, {
                     method: 'POST',
-                    mode: 'cors', // Aseguramos que use CORS
                     headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
                 });
                 
                 if (response.ok) {
-                    // Éxito: Notificar a Analytics
                     if(typeof gtag === 'function') {
-                        gtag('event', 'generate_lead', {
-                            'event_category': 'Cotización',
-                            'event_label': 'Formulario Cloudflare'
-                        });
+                        gtag('event', 'generate_lead', { 'event_label': 'Éxito' });
                     }
-
-                    // Ocultar UI y mostrar éxito
                     document.getElementById('main-grid').style.display = 'none';
                     document.getElementById('form-header').style.display = 'none';
                     document.getElementById('success-message').style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
                     const errorText = await response.text();
-                    throw new Error(`Error del servidor (${response.status}): ${errorText}`);
+                    throw new Error(`Servidor: ${response.status} - ${errorText}`);
                 }
             } catch (e) {
-                console.error("Error detallado:", e);
-                
-                // Mensaje amigable para el usuario según el tipo de error
-                let userMsg = "Hubo un problema al conectar con el servidor.";
-                if (e.message.includes("405")) {
-                    userMsg = "Error 405: El servidor no permite este método. Revisa la configuración de la Worker.";
-                } else if (e.message.includes("Failed to fetch")) {
-                    userMsg = "Error de conexión: El navegador bloqueó la petición (CORS) o el servidor no responde.";
-                }
-
-                alert(userMsg + "\n\nDetalle técnico: " + e.message);
+                console.error("Error en el envío:", e);
+                alert("Error técnico: " + e.message + "\n\nSi el error persiste, asegúrate de que la Worker en Cloudflare tenga habilitado el manejo de peticiones OPTIONS (CORS).");
                 btn.innerHTML = "Reintentar envío";
                 btn.disabled = false;
             }
