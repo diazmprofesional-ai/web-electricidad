@@ -254,48 +254,71 @@
 
         async function handleSaveRequest() {
             const btn = document.getElementById('submit-btn');
+            const formInputs = {
+                nombre: document.getElementById('c-name'),
+                telefono: document.getElementById('c-phone'),
+                email: document.getElementById('c-email'),
+                mensaje: document.getElementById('c-details')
+            };
+
             const data = {
-                nombre: document.getElementById('c-name').value,
-                telefono: document.getElementById('c-phone').value,
-                email: document.getElementById('c-email').value,
-                mensaje: document.getElementById('c-details').value,
+                nombre: formInputs.nombre.value.trim(),
+                telefono: formInputs.telefono.value.trim(),
+                email: formInputs.email.value.trim(),
+                mensaje: formInputs.mensaje.value.trim(),
                 servicios: Object.keys(cart).map(id => DATABASE.services.find(s => s.id === id).name).join(', ')
             };
 
             if (!data.nombre || !data.telefono) {
-                alert("Indica nombre y teléfono.");
+                alert("Por favor, ingresa al menos tu nombre y teléfono de contacto.");
                 return;
             }
 
-            btn.innerHTML = `<div class="loading-spinner"></div> Enviando...`;
+            btn.innerHTML = `<div class="loading-spinner"></div> Procesando...`;
             btn.disabled = true;
 
             try {
+                // Petición al Worker
                 const response = await fetch(CLOUDFLARE_WORKER_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors', // Aseguramos que use CORS
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                     body: JSON.stringify(data)
                 });
                 
                 if (response.ok) {
-                    // Evento de conversión para Google Analytics (opcional)
+                    // Éxito: Notificar a Analytics
                     if(typeof gtag === 'function') {
                         gtag('event', 'generate_lead', {
                             'event_category': 'Cotización',
-                            'event_label': 'Formulario Presupuesto'
+                            'event_label': 'Formulario Cloudflare'
                         });
                     }
 
+                    // Ocultar UI y mostrar éxito
                     document.getElementById('main-grid').style.display = 'none';
                     document.getElementById('form-header').style.display = 'none';
                     document.getElementById('success-message').style.display = 'block';
-                    window.scrollTo(0,0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    throw new Error("Error en servidor");
+                    const errorText = await response.text();
+                    throw new Error(`Error del servidor (${response.status}): ${errorText}`);
                 }
             } catch (e) {
-                console.error(e);
-                alert("Hubo un problema al enviar la solicitud. Inténtalo de nuevo.");
+                console.error("Error detallado:", e);
+                
+                // Mensaje amigable para el usuario según el tipo de error
+                let userMsg = "Hubo un problema al conectar con el servidor.";
+                if (e.message.includes("405")) {
+                    userMsg = "Error 405: El servidor no permite este método. Revisa la configuración de la Worker.";
+                } else if (e.message.includes("Failed to fetch")) {
+                    userMsg = "Error de conexión: El navegador bloqueó la petición (CORS) o el servidor no responde.";
+                }
+
+                alert(userMsg + "\n\nDetalle técnico: " + e.message);
                 btn.innerHTML = "Reintentar envío";
                 btn.disabled = false;
             }
